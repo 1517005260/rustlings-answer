@@ -4,6 +4,7 @@ fn vec_loop(input: &[i32]) -> Vec<i32> {
     for element in input {
         // TODO: Multiply each element in the `input` slice by 2 and push it to
         // the `output` vector.
+        output.push(element * 2);
     }
 
     output
@@ -22,11 +23,12 @@ fn vec_map(input: &[i32]) -> Vec<i32> {
     // vector.
     // See the example in the function `vec_map_example` above.
     input
-        .iter()
-        .map(|element| {
+        .iter()  //迭代器遍历所有元素
+        .map(|element| {   // |x| {x * 2}  代表给定x，return 2*x，x的值不变
             // ???
+            element * 2
         })
-        .collect()
+        .collect()   // 收集所有元素到一个集合中，这里是vector
 }
 
 fn main() {
