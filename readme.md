@@ -5,3 +5,6 @@
 ## Rust难点个人备注
 
 1. [所有权和引用](./exercises/06_move_semantics/README.md)
+2. 翻译问题：`impl-类方法`，`struct-类属性`，`trait-接口`
+- 不同于oop，rust不支持继承，而是”组合“
+- trait提供了多态和接口
