@@ -10,8 +10,8 @@ mod tests {
     fn move_semantics4() {
         let mut x = Vec::new();
         let y = &mut x;
+        y.push(42);             // 同时只能存在一个可变引用，所以需要调换顺序。y用完后再创造z
         let z = &mut x;
-        y.push(42);
         z.push(13);
         assert_eq!(x, [42, 13]);
     }
