@@ -7,6 +7,9 @@ mod delicious_snacks {
     // use self::fruits::PEAR as ???;
     // use self::veggies::CUCUMBER as ???;
 
+    pub use self::fruits::PEAR as fruit; // 将本模块中的 fruits/PEAR 的作用域改变，并对外暴露
+    pub use self::veggies::CUCUMBER as veggie;
+
     mod fruits {
         pub const PEAR: &str = "Pear";
         pub const APPLE: &str = "Apple";
@@ -21,7 +24,7 @@ mod delicious_snacks {
 fn main() {
     println!(
         "favorite snacks: {} and {}",
-        delicious_snacks::fruit,
+        delicious_snacks::fruit,  // 访问模块delicious_snacks下的fruit
         delicious_snacks::veggie,
     );
 }
