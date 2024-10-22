@@ -17,7 +17,7 @@ struct TeamScores {
 
 fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
     // The name of the team is the key and its associated struct is the value.
-    let mut scores = HashMap::new();
+    let mut scores:HashMap<&str, TeamScores> = HashMap::new();  // 需要显示指定hash类型
 
     for line in results.lines() {
         let mut split_iterator = line.split(',');
@@ -31,6 +31,37 @@ fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
         // Keep in mind that goals scored by team 1 will be the number of goals
         // conceded by team 2. Similarly, goals scored by team 2 will be the
         // number of goals conceded by team 1.
+
+        // 将传进来的字符串切割完成后，用hash表存储数据
+        // 首先，新进来的队伍需要创建新key
+        // 其次，已经有key的队伍要根据分数修改value
+        // 其中，value包括进球和失球，England,France,4,2 代表英国进球4失球2，法国反之
+        // 所以，hash的结构为： <国家，<进球数，失球数>>
+
+        // 这里提前用到了option类型，Some(T)/None 表示 存在/不存在 T
+
+        if let Some(team_1) = scores.get_mut(team_1_name) {
+            // get_mut 返回option，如果队名team_1存在，那么返回Some(&mut team_1_name.TeamScores);否则返回None
+            // 本分支下，匹配了Some，即，let Some(team_1) = Some(&mut team_1_name.TeamScores) ，所以有，team_1 = &mut team_1_name.TeamScores
+            team_1.goals_scored += team_1_score;
+            team_1.goals_conceded += team_2_score;  // 我方失球 = 对方进球
+        }else{
+            // 本分支下，匹配了None，即team_1_name不存在
+            scores.insert(team_1_name, TeamScores{
+                goals_scored: team_1_score,
+                goals_conceded: team_2_score,
+            });
+        }
+
+        if let Some(team_2) = scores.get_mut(team_2_name) {
+            team_2.goals_scored += team_2_score;
+            team_2.goals_conceded += team_1_score;
+        }else{
+            scores.insert(team_2_name, TeamScores{
+                goals_scored: team_2_score,
+                goals_conceded: team_1_score,
+            });
+        }
     }
 
     scores
@@ -44,6 +75,7 @@ fn main() {
 mod tests {
     use super::*;
 
+    // 这里是球队与分数，我们需要用哈希表进行分数统计
     const RESULTS: &str = "England,France,4,2
 France,Italy,3,1
 Poland,Spain,2,0
