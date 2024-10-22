@@ -33,6 +33,8 @@ impl fmt::Display for CreationError {
 
 impl Error for CreationError {}
 
+// CreationError 需要实现 Display 和 Error 接口
+
 #[derive(PartialEq, Debug)]
 struct PositiveNonzeroInteger(u64);
 
@@ -48,9 +50,10 @@ impl PositiveNonzeroInteger {
 
 // TODO: Add the correct return type `Result<(), Box<dyn ???>>`. What can we
 // use to describe both errors? Is there a trait which both errors implement?
-fn main() {
+// 现在有两种错误，一种是系统定义的，一种是我们定义的，现在我们要用系统给我们的统一接口解决错误，而我们写的错误要想兼容系统接口，必须先实现上述方法
+fn main() -> Result<(), Box<dyn Error>> {
     let pretend_user_input = "42";
-    let x: i64 = pretend_user_input.parse()?;
-    println!("output={:?}", PositiveNonzeroInteger::new(x)?);
+    let x: i64 = pretend_user_input.parse()?;  // 系统自带err
+    println!("output={:?}", PositiveNonzeroInteger::new(x)?); // 我们实现的err
     Ok(())
 }
