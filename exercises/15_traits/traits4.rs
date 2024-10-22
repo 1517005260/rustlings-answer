@@ -11,7 +11,9 @@ impl Licensed for SomeSoftware {}
 impl Licensed for OtherSoftware {}
 
 // TODO: Fix the compiler error by only changing the signature of this function.
-fn compare_license_types(software1: ???, software2: ???) -> bool {
+// 观察测试代码发现两个测试的输入类型会互换，因此考虑泛型
+fn compare_license_types<T:Licensed,U:Licensed>(software1:T, software2:U) -> bool {
+    // 接收两个泛型参数，其中T:Licensed 表示传入的泛型T必须实现License接口
     software1.licensing_info() == software2.licensing_info()
 }
 

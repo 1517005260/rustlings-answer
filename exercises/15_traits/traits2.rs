@@ -5,6 +5,13 @@ trait AppendBar {
 // TODO: Implement the trait `AppendBar` for a vector of strings.
 // `append_bar` should push the string "Bar" into the vector.
 
+impl AppendBar for Vec<String> {  // 注意使用本函数的是 vec<String> 不是 String
+    fn append_bar(mut self) -> Self {
+        self.push("Bar".to_string());
+        self
+    }
+}
+
 fn main() {
     // You can optionally experiment here.
 }
@@ -12,7 +19,6 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn is_vec_pop_eq_bar() {
         let mut foo = vec![String::from("Foo")].append_bar();
