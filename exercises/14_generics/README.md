@@ -1,4 +1,4 @@
-# Generics
+# Generics  泛型
 
 Generics is the topic of generalizing types and functionalities to broader cases.
 This is extremely useful for reducing code duplication in many ways, but can call for some rather involved syntax.
