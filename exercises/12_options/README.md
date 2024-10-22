@@ -19,3 +19,13 @@ Option types are very common in Rust code, as they have a number of uses:
 - [Option Enum Documentation](https://doc.rust-lang.org/std/option/enum.Option.html)
 - [if let](https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html)
 - [while let](https://doc.rust-lang.org/rust-by-example/flow_control/while_let.html)
+
+
+## Option 与 unwrap 
+
+—— **函数与反函数**
+
+- Some(value)：用于将一个普通值 value 包装成 Option<T> 类型，表示这个值存在。
+    - 例如：Some(5) 表示值 5 被包装成了一个 Option<i32>。
+- unwrap()：用于从 Option<T> 中取出值 T，即从 Some(T) 中解包。如果是 None，则会 panic。
+  - 例如：Some(5).unwrap() 取出 5。

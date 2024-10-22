@@ -8,7 +8,8 @@ fn main() {
     let optional_point = Some(Point { x: 100, y: 200 });
 
     // TODO: Fix the compiler error by adding something to this match statement.
-    match optional_point {
+    // Some(p) 匹配也会改变所有权
+    match &optional_point {  // 借用匹配
         Some(p) => println!("Co-ordinates are {},{}", p.x, p.y),
         _ => panic!("No match!"),
     }

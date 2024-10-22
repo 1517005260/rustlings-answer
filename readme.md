@@ -9,3 +9,4 @@
 - 不同于oop，rust不支持继承，而是”组合“
 - trait提供了多态和接口
 3. 字符串：[`&str` vs `String`](./exercises/09_strings/README.md)
+4. [option](./exercises/12_options/README.md)
