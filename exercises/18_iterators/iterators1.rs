@@ -13,13 +13,15 @@ mod tests {
         let my_fav_fruits = ["banana", "custard apple", "avocado", "peach", "raspberry"];
 
         // TODO: Create an iterator over the array.
-        let mut fav_fruits_iterator = todo!();
+        // 区别： .iter() 返回引用， .into_iter() 会消耗原本的元素
+        // 并且迭代器弹出的是Option类型
+        let mut fav_fruits_iterator = my_fav_fruits.into_iter();
 
-        assert_eq!(fav_fruits_iterator.next(), Some(&"banana"));
-        assert_eq!(fav_fruits_iterator.next(), todo!()); // TODO: Replace `todo!()`
-        assert_eq!(fav_fruits_iterator.next(), Some(&"avocado"));
-        assert_eq!(fav_fruits_iterator.next(), todo!()); // TODO: Replace `todo!()`
-        assert_eq!(fav_fruits_iterator.next(), Some(&"raspberry"));
-        assert_eq!(fav_fruits_iterator.next(), todo!()); // TODO: Replace `todo!()`
+        assert_eq!(fav_fruits_iterator.next(), Some("banana"));
+        assert_eq!(fav_fruits_iterator.next(), Some("custard apple")); // TODO: Replace `todo!()`
+        assert_eq!(fav_fruits_iterator.next(), Some("avocado"));
+        assert_eq!(fav_fruits_iterator.next(), Some("peach")); // TODO: Replace `todo!()`
+        assert_eq!(fav_fruits_iterator.next(), Some("raspberry"));
+        assert_eq!(fav_fruits_iterator.next(), None); // TODO: Replace `todo!()`
     }
 }

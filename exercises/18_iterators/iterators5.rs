@@ -13,7 +13,7 @@ enum Progress {
     Complete,
 }
 
-fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
+fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {  // usize 即与平台相关的 unsigned_int ,32位或64位
     let mut count = 0;
     for val in map.values() {
         if *val == value {
@@ -25,9 +25,13 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
 
 // TODO: Implement the functionality of `count_for` but with an iterator instead
 // of a `for` loop.
+// 使用迭代器实现上面的for循环：单个hash计数
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
     // `map` is a hash map with `String` keys and `Progress` values.
     // map = { "variables1": Complete, "from_str": None, … }
+    map.values() // 取得hash中所有的值，返回只读引用
+        .filter(|&val| *val == value)// 进行比较，注意这里是引用
+        .count()
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -44,10 +48,14 @@ fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progres
 
 // TODO: Implement the functionality of `count_collection_for` but with an
 // iterator instead of a `for` loop.
+// 使用迭代器实现上面的for循环：多个hash记总数
 fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
     // `collection` is a slice of hash maps.
     // collection = [{ "variables1": Complete, "from_str": None, … },
     //               { "variables2": Complete, … }, … ]
+    collection.iter()  // 遍历hash向量
+        .map(|hash| count_iterator(hash, value))// 对于每个向量中的hash元素，调用刚刚实现的单个hash计数函数
+        .sum()  // 最后返回所有计数加总
 }
 
 fn main() {

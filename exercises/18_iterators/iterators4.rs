@@ -10,6 +10,15 @@ fn factorial(num: u64) -> u64 {
     // - additional variables
     // For an extra challenge, don't use:
     // - recursion
+
+    // 本题采用范围迭代器
+    (1..=num).  // 生成 1~num (包括num) 的迭代器
+        fold(1, |acc, x| acc * x)  // 累乘器
+    // fold工作原理：
+    // 初始下， acc = 1 (fold 第一个参数)
+    // x 指 num 迭代器
+    // 然后不断地  acc = acc * x
+    // 最后return acc
 }
 
 fn main() {
