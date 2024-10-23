@@ -9,15 +9,16 @@ fn main() {
     // You can optionally experiment here.
 }
 
-#[cfg(test)]
+#[cfg(test)]  // 测试模块的注解，只有在运行测试时，mod内的代码才能被编译运行
 mod tests {
     // TODO: Import `is_even`. You can use a wildcard to import everything in
     // the outer module.
+    use super::is_even;
 
-    #[test]
+    #[test]  // 测试函数的注解
     fn you_can_assert() {
         // TODO: Test the function `is_even` with some values.
-        assert!();
-        assert!();
+        assert!(is_even(2));
+        assert!(is_even(4));
     }
 }
