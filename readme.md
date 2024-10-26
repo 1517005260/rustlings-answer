@@ -10,3 +10,4 @@
 - trait提供了多态和接口
 3. 字符串：[`&str` vs `String`](./exercises/09_strings/README.md)
 4. [option](./exercises/12_options/README.md)
+5. [智能指针](./exercises/19_smart_pointers/README.md)
