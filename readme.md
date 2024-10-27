@@ -11,3 +11,25 @@
 3. 字符串：[`&str` vs `String`](./exercises/09_strings/README.md)
 4. [option](./exercises/12_options/README.md)
 5. [智能指针](./exercises/19_smart_pointers/README.md)
+
+
+### 完结撒花
+
+```
+|          You made it to the Fe-nish line!          |
++--------------------------  ------------------------+
+                           \/
+     ▒▒          ▒▒▒▒▒▒▒▒      ▒▒▒▒▒▒▒▒          ▒▒
+   ▒▒▒▒  ▒▒    ▒▒        ▒▒  ▒▒        ▒▒    ▒▒  ▒▒▒▒
+   ▒▒▒▒  ▒▒  ▒▒            ▒▒            ▒▒  ▒▒  ▒▒▒▒
+       ▒▒    ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒    ▒▒
+       ▒▒  ▒▒    ▒▒                  ▒▒    ▒▒  ▒▒
+           ▒▒  ▒▒                      ▒▒  ▒▒
+
+We hope you enjoyed learning about the various aspects of Rust!
+If you noticed any issues, don't hesitate to report them on Github.
+You can also contribute your own exercises to help the greater community!
+
+Before reporting an issue or contributing, please read our guidelines:
+https://github.com/rust-lang/rustlings/blob/main/CONTRIBUTING.md
+```
