@@ -2,10 +2,11 @@
 // Note that the `as` operator is not only used when type casting. It also helps
 // with renaming imports.
 
+// 使用as进行最简单的类型转换
 fn average(values: &[f64]) -> f64 {
     let total = values.iter().sum::<f64>();
     // TODO: Make a conversion before dividing.
-    total / values.len()
+    total / values.len() as f64
 }
 
 fn main() {

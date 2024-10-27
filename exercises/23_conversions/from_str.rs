@@ -30,18 +30,34 @@ enum ParsePersonError {
 // Note that you'll need to parse the age component into a `u8` with something
 // like `"4".parse::<u8>()`.
 //
-// Steps:
-// 1. Split the given string on the commas present in it.
-// 2. If the split operation returns less or more than 2 elements, return the
-//    error `ParsePersonError::BadLen`.
-// 3. Use the first element from the split operation as the name.
-// 4. If the name is empty, return the error `ParsePersonError::NoName`.
-// 5. Parse the second element from the split operation into a `u8` as the age.
-// 6. If parsing the age fails, return the error `ParsePersonError::ParseInt`.
+// 步骤：
+// 1. 按照字符串中的逗号进行分割。
+// 2. 如果分割操作返回的元素少于或多于2个，则返回错误 `ParsePersonError::BadLen`。
+// 3. 使用分割操作的第一个元素作为名字。
+// 4. 如果名字为空，则返回错误 `ParsePersonError::NoName`。
+// 5. 将分割操作的第二个元素解析为 `u8` 类型的年龄。
+// 6. 如果年龄解析失败，则返回错误 `ParsePersonError::ParseInt`。
+
 impl FromStr for Person {
     type Err = ParsePersonError;
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {}
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let vec: Vec<&str> = s.split(',').collect();
+
+        if vec.len() < 2 || vec.len() > 2 {
+            return Err(ParsePersonError::BadLen);
+        }
+
+        let name = vec[0].trim().to_string();
+        if name.is_empty() {
+            return Err(ParsePersonError::NoName);
+        }
+
+        match vec[1].trim().parse::<u8>() {
+            Ok(age) => Ok(Person { name, age }),
+            Err(e) => Err(ParsePersonError::ParseInt(e))
+        }
+    }
 }
 
 fn main() {

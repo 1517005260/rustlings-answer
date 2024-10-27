@@ -26,15 +26,37 @@ impl Default for Person {
 // like `"4".parse::<u8>()`.
 //
 // Steps:
-// 1. Split the given string on the commas present in it.
-// 2. If the split operation returns less or more than 2 elements, return the
-//    default of `Person`.
-// 3. Use the first element from the split operation as the name.
-// 4. If the name is empty, return the default of `Person`.
-// 5. Parse the second element from the split operation into a `u8` as the age.
-// 6. If parsing the age fails, return the default of `Person`.
+// 1. 使用逗号分隔字符串，将其拆分成一个包含两个元素的向量：第一个元素为名称，第二个元素为年龄。
+// 2. 检查分隔后的向量长度是否正好为 2。如果不是（例如，没有逗号或有多余的逗号），返回 Person::default()。
+// 3. 检查名称字段是否为空，如果是，返回 Person::default()。
+// 4. 尝试将第二个字段解析为 u8 类型的年龄。如果解析失败，返回 Person::default()。
+// 5. 如果解析成功，创建并返回一个 Person 实例。
+
 impl From<&str> for Person {
-    fn from(s: &str) -> Self {}
+    fn from(s: &str) -> Self {
+        // step 1
+        let vec:Vec<&str> = s.split(',').collect();
+
+        // step 2
+        if vec.len() != 2 {
+            return Person::default();
+        }
+
+        // step 3
+        if vec[0].trim().is_empty() {
+            return Person::default();
+        }
+
+        // step 4 & 5
+        match vec[1].trim().parse::<u8>() {
+            Ok(age) => Person {
+                name: vec[0].trim().to_string(),
+                age,
+            },
+            Err(_) => return Person::default(),
+        }
+
+    }
 }
 
 fn main() {
